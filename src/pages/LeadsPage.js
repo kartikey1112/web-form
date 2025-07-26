@@ -120,7 +120,7 @@ function LeadsPage() {
 
   const handlePageSizeChange = (e) => {
     setPageSize(Number(e.target.value));
-    setCurrentPage(1); // Reset to first page
+    setCurrentPage(1); 
   };
 
   const handleFilterInputChange = (filterName, value) => {
@@ -151,7 +151,6 @@ function LeadsPage() {
     setCurrentPage(1);
   };
 
-  // Pagination slice
   const startIdx = (pagination.currentPage - 1) * pagination.limit;
   const endIdx = startIdx + pagination.limit;
   const paginatedLeads = leads.slice(startIdx, endIdx);
