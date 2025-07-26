@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './LeadsPage.css';
 
 function LeadsPage() {
-  const [allLeads, setAllLeads] = useState([]); // All leads from API
-  const [leads, setLeads] = useState([]); // Filtered leads
+  const [allLeads, setAllLeads] = useState([]); 
+  const [leads, setLeads] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +17,6 @@ function LeadsPage() {
     limit: 5
   });
 
-  // Filter states
   const [filters, setFilters] = useState({
     status: '',
     score: '',
@@ -26,9 +25,8 @@ function LeadsPage() {
     tags: '',
     name: ''
   });
-  const [pendingFilters, setPendingFilters] = useState(filters); // For controlled inputs
+  const [pendingFilters, setPendingFilters] = useState(filters); 
 
-  // Fetch all leads once
   useEffect(() => {
     const fetchLeads = async () => {
       setLoading(true);
@@ -44,7 +42,9 @@ function LeadsPage() {
           throw new Error('API endpoint returned non-JSON response. Please check if the backend server is running.');
         }
         const data = await response.json();
-        setAllLeads(Array.isArray(data.leads) ? data.leads : []);
+        const all = Array.isArray(data.leads) ? data.leads : [];
+        setAllLeads(all);
+        setLeads(all);
       } catch (err) {
         setError(err.message || 'Error fetching leads');
       } finally {
@@ -98,7 +98,6 @@ function LeadsPage() {
     });
   };
 
-  // Update pagination when leads, currentPage, or pageSize changes
   useEffect(() => {
     const totalCount = leads.length;
     const totalPages = Math.ceil(totalCount / pageSize);
