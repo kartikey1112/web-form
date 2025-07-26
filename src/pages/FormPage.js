@@ -103,7 +103,7 @@ function FormPage() {
                   type="tel"
                   id="phone"
                   name="phone"
-                  placeholder="Enter 10-digit phone number"
+                  placeholder="Enter 10-digit phone number without adding country code"
                   className={touched.phone && errors.phone ? 'error' : ''}
                 />
                 <ErrorMessage name="phone" component="div" className="error-message" />
